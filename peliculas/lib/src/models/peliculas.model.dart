@@ -68,4 +68,11 @@ class Pelicula {
     }
     return 'https://image.tmdb.org/t/p/w500/$posterPath';
   }
+
+  getBAckgroundImg(){
+    if(posterPath == null){
+      return 'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png';
+    }
+    return 'https://image.tmdb.org/t/p/w500/$backdropPath';
+  }
 }
