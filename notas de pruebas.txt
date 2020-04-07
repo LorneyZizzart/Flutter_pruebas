@@ -1,0 +1,6 @@
+image_picker -> para cargar imagen
+		ANDROID cambio en  [build.gradle] el  (minSdkVersion 21) 
+		IOS cambio en [IOS/Runner/Info.plist] copiar los tres de la instrucción
+				NSPhotoLibraryUsageDescription 
+				NSCameraUsageDescription 
+				NSMicrophoneUsageDescription

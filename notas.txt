@@ -1,0 +1,13 @@
+-subir fotos
+- ver todo lo que esta pasando ahora
+- rol de juegos (partidos)
+- llenar datos personales de CRM
+- Programa  de juegos con puntajes en el actividad
+- concursos en la app
+- saber la cantidad del los participantes
+
+
+*************************************************************************
+antes
+ahora
+despues
