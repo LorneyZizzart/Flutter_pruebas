@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:form_validation/src/model/producto_model.dart';
 import 'package:form_validation/src/provider/producto_provider.dart';
 import 'package:form_validation/src/utils/utils.dart' as utils;
+import 'package:image_picker/image_picker.dart';
 
 class ProductoPage extends StatefulWidget {
   @override
@@ -15,6 +18,8 @@ class _ProductoPageState extends State<ProductoPage> {
 
   ProductoModel productoModel = new ProductoModel();
   bool _guardando = false;
+  File foto;
+
   @override
   Widget build(BuildContext context) {
 
@@ -44,6 +49,7 @@ class _ProductoPageState extends State<ProductoPage> {
             key: formKey,
             child: Column(
               children: <Widget>[
+                _mostrarFoto(),
                 _crearNombre(),
                 _crearPrecio(),
                 _crearDisponible(),
@@ -144,11 +150,32 @@ class _ProductoPageState extends State<ProductoPage> {
     scaffoldkey.currentState.showSnackBar(snackbar);
   }
 
-  _seleccionarFoto(){
+  Widget _mostrarFoto(){
+    if(productoModel.fotoUrl != null){
+      return Container();
+    }else{
+      return Image(
+        image: AssetImage(foto?.path ?? 'assets/no-image.png'), // si la fotografia tiene un valor toma el path y si es null muestra el no-image.png
+        height: 300.0,
+        fit:BoxFit.cover
+      );
+    }
+  }
 
+  _seleccionarFoto()async{
+
+    foto = await ImagePicker.pickImage(
+      source: ImageSource.gallery
+    );
+
+    if(foto != null){
+      //limpieza 
+    }
+
+    setState(() {});
   }
 
   _tomarFoto(){
-    
+
   }
 }
