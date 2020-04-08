@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:form_validation/src/bloc/producto_bloc.dart';
+import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/model/producto_model.dart';
-import 'package:form_validation/src/provider/producto_provider.dart';
 import 'package:form_validation/src/utils/utils.dart' as utils;
 import 'package:image_picker/image_picker.dart';
 
@@ -14,8 +15,8 @@ class ProductoPage extends StatefulWidget {
 class _ProductoPageState extends State<ProductoPage> {
   final formKey = GlobalKey<FormState>();
   final scaffoldkey = GlobalKey<ScaffoldState>();
-  final productoProvider = new ProductoProvider();
 
+  ProductosBloc productosBloc; 
   ProductoModel productoModel = new ProductoModel();
   bool _guardando = false;
   File foto;
@@ -23,7 +24,9 @@ class _ProductoPageState extends State<ProductoPage> {
   @override
   Widget build(BuildContext context) {
 
+    productosBloc = Provider.productosBloc(context);
     final ProductoModel prodData = ModalRoute.of(context).settings.arguments;
+
     if(prodData != null){
       productoModel = prodData;
     }
@@ -125,16 +128,23 @@ class _ProductoPageState extends State<ProductoPage> {
     );
   }
 
-  void _submit(){
+  void _submit()async{
     if(!formKey.currentState.validate()) return;
       //cuando el formulario es valido
       formKey.currentState.save();
       
       setState(() {_guardando = true;});
+
+      if(foto!=null){
+        productoModel.fotoUrl = await productosBloc.subirFoto(foto);
+      }
+
       if(productoModel.id == null){
-        productoProvider.crearProducto(productoModel);  
+        productosBloc.agregarProducto(productoModel);
+        // productoProvider.crearProducto(productoModel);  
       }else{
-        productoProvider.editarProducto(productoModel);
+        // productoProvider.editarProducto(productoModel);
+        productosBloc.editarProducto(productoModel);
       }
     setState(() {_guardando = false;});
     mostrarSnackbar('Registro existoso');
@@ -152,7 +162,12 @@ class _ProductoPageState extends State<ProductoPage> {
 
   Widget _mostrarFoto(){
     if(productoModel.fotoUrl != null){
-      return Container();
+      return FadeInImage(
+        image: NetworkImage(productoModel.fotoUrl),
+        placeholder: AssetImage('assets/loading.gif'),
+        height: 300.0,
+        fit: BoxFit.contain,
+      );
     }else{
       return Image(
         image: AssetImage(foto?.path ?? 'assets/no-image.png'), // si la fotografia tiene un valor toma el path y si es null muestra el no-image.png
@@ -163,19 +178,23 @@ class _ProductoPageState extends State<ProductoPage> {
   }
 
   _seleccionarFoto()async{
+    _procesarImgen(ImageSource.gallery); 
+  }
 
+  _tomarFoto()async{
+    _procesarImgen(ImageSource.camera);
+  }
+
+  _procesarImgen(ImageSource origen)async{
     foto = await ImagePicker.pickImage(
-      source: ImageSource.gallery
+      source: origen
     );
 
     if(foto != null){
-      //limpieza 
+      productoModel.fotoUrl = null;
+      
     }
 
     setState(() {});
-  }
-
-  _tomarFoto(){
-
   }
 }

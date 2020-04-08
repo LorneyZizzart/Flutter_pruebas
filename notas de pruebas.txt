@@ -4,3 +4,7 @@ image_picker -> para cargar imagen
 				NSPhotoLibraryUsageDescription 
 				NSCameraUsageDescription 
 				NSMicrophoneUsageDescription
+
+
+
+- Para descargar los paquetes cmd =>(flutter packages get)

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/provider/usuario_provider.dart';
+
 import 'package:form_validation/src/utils/utils.dart' as util;
 
-class LoginPage extends StatelessWidget {
-  
+class RegistroPage extends StatelessWidget {
   final usuarioProvider = new UsuarioProvider();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +47,7 @@ class LoginPage extends StatelessWidget {
             ),
             child: Column(
               children: <Widget>[
-                Text('Ingreso', style: TextStyle(fontSize: 20.0),),
+                Text('Crear cuenta', style: TextStyle(fontSize: 20.0),),
                 SizedBox(height: 60.0,),
                 _crearEmail(bloc),
                 SizedBox(height: 30.0,),
@@ -60,8 +59,8 @@ class LoginPage extends StatelessWidget {
           ),
           // Text('¿Olvido la contraseña?'),
           FlatButton(
-            child: Text('Crear una nueva cuenta'),
-            onPressed: () => Navigator.pushReplacementNamed(context, 'registro'),
+            child: Text('¿Tiene una cuenta?'),
+            onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
           ),
           SizedBox(height: 100.0,)
 
@@ -128,7 +127,7 @@ class LoginPage extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               icon: Icon(Icons.alternate_email, color: Colors.deepPurple,),
-              hintText: 'test@test.com',
+              hintText: 'ejemplo@correo.com',
               labelText: 'Correo electrónico',
               counterText: snapshot.data,
               errorText: snapshot.error        
@@ -180,17 +179,16 @@ class LoginPage extends StatelessWidget {
           elevation: 0.0,
           color: Color.fromRGBO(90, 70, 178, 1.0),
           textColor: Colors.white,
-          onPressed: snapshot.hasData ? () => _login(bloc, context) : null,
+          onPressed: snapshot.hasData ? () => _register(bloc, context) : null,
         );
       }
     );
   }
 
-  _login(LoginBloc bloc, BuildContext context)async{
-    // print('Eamil: ${bloc.email}');
-    // print('Password: ${bloc.password}');
-    // Navigator.pushNamed(context, 'home');
-    Map info = await usuarioProvider.login(bloc.email, bloc.password);
+  _register(LoginBloc bloc, BuildContext context)async{
+
+    Map info = await usuarioProvider.nuevoUsuario(bloc.email, bloc.password);
+
     if(info['ok']){
       Navigator.pushNamed(context, 'home');
     }else{
