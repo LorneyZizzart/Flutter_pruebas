@@ -10,3 +10,7 @@ image_picker -> para cargar imagen
 - Para descargar los paquetes cmd =>(flutter packages get)
 
 -c:\Users\USER_NAME\key.jks => key de firma de la app build [pass=123456789]
+
+************************
+- tener la licencia de developer de ios para probar las notificaciones y de android no tiene requisitos
+- nosotro no logramos la prueba de notificaciones por las versiones de flutter y firebase
