@@ -8,3 +8,5 @@ image_picker -> para cargar imagen
 
 
 - Para descargar los paquetes cmd =>(flutter packages get)
+
+-c:\Users\USER_NAME\key.jks => key de firma de la app build [pass=123456789]
