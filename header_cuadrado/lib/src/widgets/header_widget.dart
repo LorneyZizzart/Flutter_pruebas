@@ -231,12 +231,20 @@ class _HeaderWavesPainter extends CustomPainter {
     
     final path = new Path();
     //Dibujar con el path y el paint
-    path.moveTo(0, 0);
-    path.lineTo(0, size.height*0.25);
-    // path.lineTo(size.width, size.height*0.25);
-    path.quadraticBezierTo(size.width*0.25, size.height*0.35, size.width*0.5, size.height*0.25);
-    path.quadraticBezierTo(size.width*0.75, size.height*0.15, size.width, size.height*0.25);
-    path.lineTo(size.width, 0);
+
+    // waves arriba
+    // path.moveTo(0, 0);
+    // path.lineTo(0, size.height*0.25);
+    // path.quadraticBezierTo(size.width*0.25, size.height*0.35, size.width*0.5, size.height*0.25);
+    // path.quadraticBezierTo(size.width*0.75, size.height*0.15, size.width, size.height*0.25);
+    // path.lineTo(size.width, 0);
+
+    // waves abajo
+    path.moveTo(0, size.height);
+    path.lineTo(0, size.height*0.75);
+    path.quadraticBezierTo(size.width*0.25, size.height*0.65, size.width*0.5, size.height*0.75);
+    path.quadraticBezierTo(size.width*0.75, size.height*0.85, size.width, size.height*0.75);
+    path.lineTo(size.width, size.height);
 
 
 
