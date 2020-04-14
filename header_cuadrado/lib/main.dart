@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:header_cuadrado/src/pages/animaciones_page.dart';
 import 'package:header_cuadrado/src/pages/graficas%20_circulares_page.dart';
+import 'package:header_cuadrado/src/pages/slideshow_page.dart';
 import 'package:header_cuadrado/src/retos/cuadrado_animado_page.dart';
 
 // import 'package:header_cuadrado/src/pages/header_page.dart';
@@ -16,11 +17,12 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.pinkAccent
       ),
       title: 'Material App',
-      initialRoute: 'graficas',
+      initialRoute: 'slidesoow',
       routes: {
          "animaciones": (BuildContext context) => AnimacionesPage(),
          "cuadradoAnimado": (BuildContext context) => CuadradoAnimadoPage(),
          "graficas": (BuildContext context) => GraficasCircularesPage(),
+         "slidesoow": (BuildContext context) => SlideshowPage(),
       },
       // home: AnimacionesPage()
     );
