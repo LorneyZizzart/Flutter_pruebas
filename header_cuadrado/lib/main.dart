@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:header_cuadrado/src/pages/animaciones_page.dart';
+import 'package:header_cuadrado/src/pages/emergency_page.dart';
 import 'package:header_cuadrado/src/pages/graficas%20_circulares_page.dart';
 import 'package:header_cuadrado/src/pages/header_page.dart';
 import 'package:header_cuadrado/src/pages/pinterest_page.dart';
+import 'package:header_cuadrado/src/pages/sliderList_page.dart';
 import 'package:header_cuadrado/src/pages/slideshow_page.dart';
 import 'package:header_cuadrado/src/retos/cuadrado_animado_page.dart';
 
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.pinkAccent
       ),
       title: 'Material App',
-      initialRoute: 'pinteres',
+      initialRoute: 'sliver',
       routes: {
          "animaciones": (BuildContext context) => AnimacionesPage(),
          "cuadradoAnimado": (BuildContext context) => CuadradoAnimadoPage(),
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
          "slideshow": (BuildContext context) => SlideshowPage(),
          "header": (BuildContext context) => HeadersPage(),
          "pinteres": (BuildContext context) => PinterestPage(),
+         "emergencia": (BuildContext context) => EmergenciaPage(),
+         "sliver": (BuildContext context) => SliverListPage(),
       },
       // home: AnimacionesPage()
     );
