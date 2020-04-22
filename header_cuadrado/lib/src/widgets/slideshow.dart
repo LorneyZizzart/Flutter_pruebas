@@ -10,7 +10,7 @@ class Slideshow extends StatelessWidget {
   final double bulletPrimario;
   final double bulletSecundario;
 
-  const Slideshow({Key key, @required this.slides, this.puntosArriba = false, this.colorPrimario = Colors.blue, this.colorSecundario = Colors.grey, this.bulletPrimario = 12, this.bulletSecundario = 12}) : super(key: key);
+  const Slideshow({Key key, @required this.slides, this.puntosArriba = false, this.colorPrimario = Colors.blue, this.colorSecundario = Colors.yellow, this.bulletPrimario = 12, this.bulletSecundario = 12}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Slideshow extends StatelessWidget {
             child: Builder(
               builder: (BuildContext context) {
                 Provider.of<_SlideshowModel>(context).colorPrimario = this.colorPrimario;
-                Provider.of<_SlideshowModel>(context).colorPrimario = this.colorPrimario;
+                Provider.of<_SlideshowModel>(context).colorSecundario = this.colorSecundario;
 
                 Provider.of<_SlideshowModel>(context).bulletPrimario = this.bulletPrimario;
                 Provider.of<_SlideshowModel>(context).bulletSecundario = this.bulletSecundario;
@@ -129,7 +129,7 @@ class __SlidesState extends State<_Slides> {
         //   _Slide('assets/svg/2.svg'),
         //   _Slide('assets/svg/3.svg'),
         // ],
-        children: widget.slides.map((slide) => _Slide(slide)).toList(),
+        children: widget.slides.map((slide) => _Slide(slide)).toList(), 
       ),
     );
   }
@@ -146,6 +146,7 @@ class _Slide extends StatelessWidget {
       height: double.infinity,
       padding: EdgeInsets.all(5),
       child: slide,
+      // color: Colors.blue,
     );
   }
 }
@@ -153,7 +154,7 @@ class _Slide extends StatelessWidget {
 class _SlideshowModel with ChangeNotifier {
   double _currentPage = 0;
   Color _colorPrimario = Colors.blue;
-  Color _colorSecundario =Colors.grey;
+  Color _colorSecundario =Colors.yellow;
   double _bulletPrimario = 12;
   double _bulletSecundario = 12;
 

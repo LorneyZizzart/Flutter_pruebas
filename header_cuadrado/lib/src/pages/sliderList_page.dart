@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:header_cuadrado/src/theme/theme.dart';
+import 'package:provider/provider.dart';
 
 class SliverListPage extends StatelessWidget {
   const SliverListPage({Key key}) : super(key: key);
@@ -23,16 +25,17 @@ class _ButtonBottonNewList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final appTheme = Provider.of<ThemeChanger>(context);
     return ButtonTheme(
       minWidth: size.width * 0.9,
       height: 100,
       child: RaisedButton(
         onPressed: (){},
-        color: Color(0xffED6762),
+        color: (appTheme.darkTheme) ? appTheme.currentTheme.accentColor :  Color(0xffED6762),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(topLeft: Radius.circular(50))
         ),
-        child: Text('CREATE NEW LIST', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 3),),
+        child: Text('CREATE NEW LIST', style: TextStyle(color: appTheme.currentTheme.scaffoldBackgroundColor, fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 3),),
       ),
     );
   }
@@ -53,6 +56,7 @@ class _MainScroll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
     return CustomScrollView(
       slivers: <Widget>[
         // SliverAppBar(
@@ -66,7 +70,7 @@ class _MainScroll extends StatelessWidget {
           delegate: _SliverCustomHeaderDelegate(250, 200, 
           Container( 
             alignment: Alignment.centerLeft, // centrar a la derecha
-            color:Colors.white, 
+            color:appTheme.scaffoldBackgroundColor, 
             child: _HeaderPage()
             )
           ) ,
@@ -114,12 +118,17 @@ class _HeaderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
     return Column(
       children: <Widget>[
         SizedBox(height: 30,),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Text('New', style: TextStyle(color: Colors.deepPurple, fontSize: 50, fontWeight: FontWeight.bold),),
+          child: Text('New', 
+          style: TextStyle(            
+            color: (appTheme.darkTheme) ? appTheme.currentTheme.backgroundColor : Colors.deepPurple, 
+            fontSize: 50, fontWeight: 
+            FontWeight.bold),),
         ),
         Stack(
           children: <Widget>[
@@ -129,11 +138,14 @@ class _HeaderPage extends StatelessWidget {
               child: Container(
                 width: 120,
                 height: 8,
-                color: Colors.red.withOpacity(0.2),
+                color: (appTheme.darkTheme) ? appTheme.currentTheme.backgroundColor : Colors.red.withOpacity(0.2),
               ),
             ),
             Container(
-              child: Text('List', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.pink),),
+              child: Text('List', style: TextStyle(fontSize: 50, 
+              fontWeight: FontWeight.bold, 
+              color: Colors.pink
+              ),),
             )
           ],
         )
@@ -172,14 +184,18 @@ class _ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
     return Container(
-      child: Text(titulo, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+      child: Text(titulo, style: TextStyle(
+        color: Colors.white, 
+        fontWeight: FontWeight.bold, 
+        fontSize: 20),),
       padding: EdgeInsets.all(30),
       alignment: Alignment.centerLeft,
       height: 130,
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: color,
+        color: (appTheme.darkTheme) ? appTheme.currentTheme.backgroundColor : color,
         borderRadius: BorderRadius.circular(30)
       ),
     );

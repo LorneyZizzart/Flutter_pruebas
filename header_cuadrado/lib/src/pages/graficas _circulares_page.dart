@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:header_cuadrado/src/theme/theme.dart';
 import 'package:header_cuadrado/src/widgets/radial_progress.dart';
+import 'package:provider/provider.dart';
 
 class GraficasCircularesPage extends StatefulWidget {
 
@@ -13,6 +15,7 @@ class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
     return Scaffold(
       appBar: AppBar(title: Text('Circular progress'),),
       body: Center(
@@ -24,14 +27,14 @@ class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 CustomRadialProgress(porcentaje: porcentaje, color: Colors.blue,),
-                CustomRadialProgress(porcentaje: porcentaje, color: Colors.pink,),
+                CustomRadialProgress(porcentaje: porcentaje * 1.2, color: Colors.pink,),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                CustomRadialProgress(porcentaje: porcentaje, color: Colors.red,),
-                CustomRadialProgress(porcentaje: porcentaje, color: Colors.orange,),
+                CustomRadialProgress(porcentaje: porcentaje * 1.4, color: Colors.red,),
+                CustomRadialProgress(porcentaje: porcentaje * 1.6, color: Colors.orange,),
               ],
             )
           ],
@@ -47,7 +50,7 @@ class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
             }
           });
         },
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: appTheme.currentTheme.accentColor,
       ),
     );
   }
@@ -65,15 +68,16 @@ class CustomRadialProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
     return Container(
       width: 180,
       height: 180,
       child: RadialProgress(
         porcentaje: porcentaje,
         colorPrimario:  this.color,
-        colorSecundario: Colors.grey,            
+        colorSecundario: appTheme.currentTheme.accentColor,           
         grosorPrimario: 10.0,
-        grosorSecundario: 20.0,
+        grosorSecundario: 4.0,
       ),
     );
   }

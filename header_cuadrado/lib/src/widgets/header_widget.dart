@@ -162,6 +162,10 @@ class _HeaderPicoPainter extends CustomPainter {
 
 class HearderCurvo extends StatelessWidget {
 
+  final Color color;
+
+  const HearderCurvo({Key key, @required this.color}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -169,19 +173,24 @@ class HearderCurvo extends StatelessWidget {
           width: double.infinity,
           // color: Color(0xff615AAB),
           child: CustomPaint(
-            painter: _HearderCurvoPainter(),
+            painter: _HearderCurvoPainter(this.color),
           ),
     );
   }
 }
 
 class _HearderCurvoPainter extends CustomPainter {
+
+  final Color color;
+
+  _HearderCurvoPainter(this.color);
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
     //propiedades
-    paint.color = Color(0xff615AAB);
-    paint.style = PaintingStyle.stroke; // stroke que son los border y .fill es el relleno
+    // paint.color = Color(0xff615AAB);
+    paint.color = color;
+    // paint.style = PaintingStyle.stroke; // stroke que son los border y .fill es el relleno
     paint.style = PaintingStyle.fill; // stroke que son los border y .fill es el relleno
     paint.strokeWidth = 20;
     
