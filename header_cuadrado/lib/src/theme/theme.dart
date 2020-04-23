@@ -16,7 +16,7 @@ class ThemeChanger with ChangeNotifier {
       case 1: //Light
         _darkTheme = false;
         _customTheme = false;
-        _currentTheme =  ThemeData(primaryColor: Colors.pink);
+        _currentTheme =  ThemeData(primaryColor: Colors.pink, accentColor: Colors.pink);
         break;
       case 2: //Dark
         _darkTheme = true;
@@ -28,12 +28,12 @@ class ThemeChanger with ChangeNotifier {
       case 3: //Personalizado
         _darkTheme = false;
         _customTheme = true;
-        _currentTheme =  ThemeData(primaryColor: Colors.pink);
+        _currentTheme =  ThemeData(primaryColor: Colors.pink, accentColor: Colors.pink);
         break;
       default:
       _darkTheme = false;
       _customTheme = false;
-      _currentTheme =  ThemeData(primaryColor: Colors.pink,);
+      _currentTheme =  ThemeData(primaryColor: Colors.pink, accentColor: Colors.pink);
     }
   }
 
@@ -48,7 +48,7 @@ class ThemeChanger with ChangeNotifier {
         textTheme: TextTheme(body1: TextStyle(color: Colors.white))
       );
     }else{
-      _currentTheme = ThemeData(primaryColor: Colors.pink);
+      _currentTheme = ThemeData(primaryColor: Colors.pink, accentColor: Colors.pink);
     }
     notifyListeners();
   }
@@ -57,9 +57,9 @@ class ThemeChanger with ChangeNotifier {
     _customTheme = value;
     _darkTheme = false;
     if(value){
-      _currentTheme = ThemeData(primaryColor: Colors.pink);
+      _currentTheme = ThemeData(primaryColor: Colors.pink,accentColor: Colors.pink);
     }else{
-      _currentTheme = ThemeData(primaryColor: Colors.pink);
+      _currentTheme = ThemeData(primaryColor: Colors.pink, accentColor: Colors.pink);
     }
     notifyListeners();
   }
