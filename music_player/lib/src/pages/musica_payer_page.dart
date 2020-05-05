@@ -43,6 +43,7 @@ class Background extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60)),
         gradient: LinearGradient(
+          begin: Alignment.topLeft,
           colors: [
             Color(0xff33333E),
             Color(0xff201E28),
