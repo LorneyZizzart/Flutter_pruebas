@@ -48,7 +48,7 @@ class _SliderViewState extends State<SliderView> {
           ),
           SliderTheme(
             data: SliderThemeData(
-              thumbShape: CustomThumbShape(),
+              // thumbShape: CustomThumbShape(),
             ),
             child: Slider(
               onChanged: (double value) {
@@ -73,60 +73,60 @@ class _SliderViewState extends State<SliderView> {
   }
 }
 
-class CustomThumbShape extends SliderComponentShape {
-  static const double _thumbSize = 3.0;
-  static const double _disabledThumbSize = 3.0;
+// class CustomThumbShape extends SliderComponentShape {
+//   static const double _thumbSize = 3.0;
+//   static const double _disabledThumbSize = 3.0;
 
-  @override
-  Size getPreferredSize(bool isEnabled, bool isDiscrete) {
-    return isEnabled
-        ? const Size.fromRadius(_thumbSize)
-        : const Size.fromRadius(_disabledThumbSize);
-  }
+//   @override
+//   Size getPreferredSize(bool isEnabled, bool isDiscrete) {
+//     return isEnabled
+//         ? const Size.fromRadius(_thumbSize)
+//         : const Size.fromRadius(_disabledThumbSize);
+//   }
 
-  static final Animatable<double> sizeTween = Tween<double>(
-    begin: _disabledThumbSize,
-    end: _thumbSize,
-  );
+//   static final Animatable<double> sizeTween = Tween<double>(
+//     begin: _disabledThumbSize,
+//     end: _thumbSize,
+//   );
 
-  @override
-  void paint(
-    PaintingContext context,
-    Offset thumbCenter, {
-    Animation<double> activationAnimation,
-    Animation<double> enableAnimation,
-    bool isDiscrete,
-    TextPainter labelPainter,
-    RenderBox parentBox,
-    SliderThemeData sliderTheme,
-    TextDirection textDirection,
-    double value,
-  }) {
-    final Canvas canvas = context.canvas;
-    final ColorTween colorTween = ColorTween(
-      begin: sliderTheme.disabledThumbColor,
-      end: sliderTheme.thumbColor,
-    );
-    canvas.drawPath(
-        Path()
-          ..addOval(Rect.fromPoints(
-              Offset(thumbCenter.dx + 12, thumbCenter.dy + 12),
-              Offset(thumbCenter.dx - 12, thumbCenter.dy - 12)))
-          ..fillType = PathFillType.evenOdd,
-        Paint()
-          ..color = Colors.black.withOpacity(0.5)
-          ..maskFilter =
-              MaskFilter.blur(BlurStyle.normal, convertRadiusToSigma(8)));
+//   @override
+//   void paint(
+//     PaintingContext context,
+//     Offset thumbCenter, {
+//     Animation<double> activationAnimation,
+//     Animation<double> enableAnimation,
+//     bool isDiscrete,
+//     TextPainter labelPainter,
+//     RenderBox parentBox,
+//     SliderThemeData sliderTheme,
+//     TextDirection textDirection,
+//     double value,
+//   }) {
+//     final Canvas canvas = context.canvas;
+//     final ColorTween colorTween = ColorTween(
+//       begin: sliderTheme.disabledThumbColor,
+//       end: sliderTheme.thumbColor,
+//     );
+//     canvas.drawPath(
+//         Path()
+//           ..addOval(Rect.fromPoints(
+//               Offset(thumbCenter.dx + 12, thumbCenter.dy + 12),
+//               Offset(thumbCenter.dx - 12, thumbCenter.dy - 12)))
+//           ..fillType = PathFillType.evenOdd,
+//         Paint()
+//           ..color = Colors.black.withOpacity(0.5)
+//           ..maskFilter =
+//               MaskFilter.blur(BlurStyle.normal, convertRadiusToSigma(8)));
 
-    final Paint cPaint = Paint();
-    cPaint..color = Colors.white;
-    cPaint..strokeWidth = 14 / 2;
-    canvas.drawCircle(Offset(thumbCenter.dx, thumbCenter.dy), 12, cPaint);
-    cPaint..color = colorTween.evaluate(enableAnimation);
-    canvas.drawCircle(Offset(thumbCenter.dx, thumbCenter.dy), 10, cPaint);
-  }
+//     final Paint cPaint = Paint();
+//     cPaint..color = Colors.white;
+//     cPaint..strokeWidth = 14 / 2;
+//     canvas.drawCircle(Offset(thumbCenter.dx, thumbCenter.dy), 12, cPaint);
+//     cPaint..color = colorTween.evaluate(enableAnimation);
+//     canvas.drawCircle(Offset(thumbCenter.dx, thumbCenter.dy), 10, cPaint);
+//   }
 
-  double convertRadiusToSigma(double radius) {
-    return radius * 0.57735 + 0.5;
-  }
-}
+//   double convertRadiusToSigma(double radius) {
+//     return radius * 0.57735 + 0.5;
+//   }
+// }

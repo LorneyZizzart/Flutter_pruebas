@@ -21,7 +21,7 @@ class WitAI {
       Message(
           userId: _userId,
           id: DateTime.now().microsecondsSinceEpoch.toString(),
-          value: "sorry i don't understand your message remember i'm a 🤖",
+          value: "sorry i don't understand your message remember i'm a 🤖 dfdf",
           type: MessageType.text)
     ];
   }

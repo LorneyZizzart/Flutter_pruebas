@@ -194,7 +194,6 @@ class _ProductoPageState extends State<ProductoPage> {
       productoModel.fotoUrl = null;
       
     }
-
     setState(() {});
   }
 }

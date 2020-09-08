@@ -103,12 +103,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProv
     );
    
   }
-
-
 }
-
-
-
 
 class _Rectangulo extends StatelessWidget {
     @override
@@ -117,7 +112,7 @@ class _Rectangulo extends StatelessWidget {
        width: 70,
        height: 70,
        decoration: BoxDecoration(
-         color: Colors.blue
+         color: Colors.red
        ),
      );
    }

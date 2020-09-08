@@ -15,8 +15,7 @@ class MyDiaryScreen extends StatefulWidget {
   _MyDiaryScreenState createState() => _MyDiaryScreenState();
 }
 
-class _MyDiaryScreenState extends State<MyDiaryScreen>
-    with TickerProviderStateMixin {
+class _MyDiaryScreenState extends State<MyDiaryScreen>  with TickerProviderStateMixin {
   Animation<double> topBarAnimation;
 
   List<Widget> listViews = <Widget>[];

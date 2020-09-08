@@ -98,4 +98,9 @@ class DBProvider {
     final res = await db.rawDelete('DELETE FROM Scans'); 
     return res;
   }
+
+  Future close ()async {
+    var db = await database;
+    db.close();
+  }
 }

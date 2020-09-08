@@ -8,8 +8,9 @@ import 'package:provider/provider.dart';
 void main() => runApp(
   ChangeNotifierProvider(
     create: (_) => new LayoutModel(),
-      child: ChangeNotifierProvider(
-      child: MyApp(), create: (_) => ThemeChanger(2),
+    child: ChangeNotifierProvider(
+      create: (_) => ThemeChanger(2),
+      child: MyApp(), 
     ),
   )
 );
